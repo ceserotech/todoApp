@@ -46,7 +46,7 @@ const Home = () => {
     <div
       className={`${darkMode ? "dark" : ""} min-h-screen bg-gray-100 dark:bg-black transition`}
     >
-      <div className="absolute top-0 left-0 w-full h-52 md:h-72 bg-[url('./images/bg-desktop-light.jpg')] dark:bg-[url('./images/bg-desktop-dark.jpg')] md:bg-[url('./images/bg-mobile-light.jpg')] md:dark:bg-[url('./images/bg-mobile-dark.jpg')] bg-cover bg-no-repeat"></div>
+      <div className="absolute top-0 left-0 w-full h-52 md:h-72 bg-[url('/images/bg-desktop-light.jpg')] dark:bg-[url('/images/bg-desktop-dark.jpg')] md:bg-[url('/images/bg-mobile-light.jpg')] md:dark:bg-[url('/images/bg-mobile-dark.jpg')] bg-cover bg-no-repeat"></div>
 
       {/* CONTENT */}
       <main className="relative max-w-xl mx-auto px-6 pt-10 md:pt-16">
@@ -60,9 +60,9 @@ const Home = () => {
             }}
           >
             {darkMode == "" ? (
-              <img src="./images/icon-moon.svg" alt="" />
+              <img src="/images/icon-moon.svg" alt="" />
             ) : (
-              <img src="./images/icon-sun.svg" alt="" />
+              <img src="/images/icon-sun.svg" alt="" />
             )}
           </button>
         </header>
