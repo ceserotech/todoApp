@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import "../index.css";
 
 const Home = () => {
@@ -6,6 +7,24 @@ const Home = () => {
   const [todos, setTodos] = useState([]);
   const [input, setInput] = useState("");
   const [filter, setFilter] = useState("all");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme) {
+      setDarkMode(savedTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (darkMode === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    localStorage.setItem("theme", darkMode);
+  }, [darkMode]);
 
   const addTodo = () => {
     if (input.trim() === "") return; // prevent empty todos
@@ -82,7 +101,6 @@ const Home = () => {
 
         {/* TODO list */}
         <div className="mt-6 bg-white dark:bg-gray-800 rounded-md shadow-lg overflow-hidden">
-          
           <div className="flex items-center justify-between px-4 py-3 ">
             <ul className="w-10/10">
               {filteredTodos.map((list) => {
@@ -122,24 +140,26 @@ const Home = () => {
             </span>
 
             <div className="flex gap-4 hidden md:flex">
-              <button onClick={() => setFilter("all")}>All</button>
+              <button className="focus:text-blue-800 focus:border-b-1"  onClick={() => setFilter("all")}>All</button>
 
-              <button onClick={() => setFilter("active")}>Active</button>
-              <button onClick={() => setFilter("completed")}>Completed</button>
+              <button className="focus:text-blue-800 focus:border-b-1" onClick={() => setFilter("active")}>Active</button>
+              <button className="focus:text-blue-800 focus:border-b-1" onClick={() => setFilter("completed")}>Completed</button>
             </div>
             <button onClick={clearCompleted}>Clear Completed</button>
           </div>
-
-         
         </div>
-        <div className="mt-20 text-center"><span className="text-gray-300">drag and drop</span></div>
-           
+        <div className="mt-20 text-center">
+          <span className="text-gray-300">drag and drop</span>
+        </div>
+
         {/* for mobile */}
         <div className="mt-4 bg-white dark:bg-gray-800 rounded-md shadow-lg flex justify-center gap-6 py-3 md:hidden">
-          <button className="text-blue-500" onClick={() => setFilter("all")}>All</button>
+          <button className="focus:text-blue-800 focus:border-b-1" onClick={() => setFilter("all")}>
+            All
+          </button>
 
-              <button onClick={() => setFilter("active")}>Active</button>
-              <button onClick={() => setFilter("completed")}>Completed</button>
+          <button className="focus:text-blue-800 focus:border-b-1" onClick={() => setFilter("active")}>Active</button>
+          <button className="focus:text-blue-800 focus:border-b-1" onClick={() => setFilter("completed")}>Completed</button>
         </div>
       </main>
     </div>
